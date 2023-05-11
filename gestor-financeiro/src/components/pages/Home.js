@@ -1,6 +1,9 @@
 import styles from './Home.module.css'
 
-function Home(){
+function Home({showHeader}){
+
+    showHeader(false)
+    
     return(
         <div className={styles.home}>
             Home

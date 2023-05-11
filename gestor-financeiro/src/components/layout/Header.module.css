@@ -1,0 +1,25 @@
+.header{
+    position: fixed;
+    top: 0px;
+
+    width: 100vw;
+    padding: 10px;
+
+    display: flex;
+    justify-content: center;
+}
+
+.header img{
+    width: 40px;
+
+    cursor: pointer;
+    transition: all .3s ease;
+}
+
+.header img:hover{
+    transform: translate(0px, -10%);
+}
+.header img:active{
+    transform: scale(.95) translate(0px, -10%);
+    transition: all .1s ease;
+}

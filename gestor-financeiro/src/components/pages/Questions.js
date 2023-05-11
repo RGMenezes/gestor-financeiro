@@ -3,7 +3,7 @@ function Questions(){
         <div>
             Perguntas
         </div>
-    )
-}
+    );
+};
 
-export default Questions
+export default Questions;

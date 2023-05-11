@@ -1,22 +1,22 @@
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 
-import logo from "../../assets/logo/logo.svg"
+import logo from "../../assets/logo/logo.svg";
 
-import Button from '../form/Button'
+import Button from '../form/Button';
 
-import styles from './Home.module.css'
+import styles from './Home.module.css';
 
 function Home({showHeader}){
 
-    showHeader(false)
+    showHeader(false);
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     function toQuestions(){
-        showHeader(true)
+        showHeader(true);
 
-        navigate("/questions")
-    }
+        navigate("/questions");
+    };
 
     return(
         <div className={styles.home}>
@@ -26,7 +26,7 @@ function Home({showHeader}){
 
             <Button handleOnClick={toQuestions} text="Analizar Finanças" styleMode="dark" />
         </div>
-    )
-}
+    );
+};
 
-export default Home
+export default Home;

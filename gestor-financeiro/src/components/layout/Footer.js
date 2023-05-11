@@ -1,6 +1,6 @@
-import {BsGithub, BsLinkedin, BsHddStackFill} from 'react-icons/bs'
+import {BsGithub, BsLinkedin, BsHddStackFill} from 'react-icons/bs';
 
-import styles from './Footer.module.css'
+import styles from './Footer.module.css';
 
 function Footer(){
     return(
@@ -21,7 +21,7 @@ function Footer(){
             </nav>
             <p>Gestor financeiro &copy; 2023</p>
         </footer>
-    )
-}
+    );
+};
 
-export default Footer
+export default Footer;

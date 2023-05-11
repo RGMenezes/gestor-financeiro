@@ -2,5 +2,19 @@
     padding: 60px 10px;
     min-height: 100vh;
 
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+
     background-image: var(--gradient);
+}
+
+.home img{
+    width: 200px;
+}
+
+.home h1{
+    
 }

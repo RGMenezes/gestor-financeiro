@@ -3,7 +3,7 @@ function Result(){
         <div>
             Resultado
         </div>
-    )
-}
+    );
+};
 
-export default Result
+export default Result;

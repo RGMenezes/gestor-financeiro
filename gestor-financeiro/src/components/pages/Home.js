@@ -19,13 +19,13 @@ function Home({showHeader}){
     };
 
     return(
-        <div className={styles.home}>
+        <section className={styles.home}>
             <h1>Gestor financeiro</h1>
             <img src={logo} alt="logo do site" />
-            <h2>Descubra a melhor maneira de gerenciar as suas finanças.</h2>
+            <h2>Descubra a melhor maneira de gerenciar as suas finanças!</h2>
 
             <Button handleOnClick={toQuestions} text="Analizar Finanças" styleMode="dark" />
-        </div>
+        </section>
     );
 };
 

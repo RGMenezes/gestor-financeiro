@@ -1,8 +1,8 @@
 function Questions(){
     return(
-        <div>
+        <section>
             Perguntas
-        </div>
+        </section>
     );
 };
 

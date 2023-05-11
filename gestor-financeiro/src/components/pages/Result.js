@@ -1,8 +1,8 @@
 function Result(){
     return(
-        <div>
+        <section>
             Resultado
-        </div>
+        </section>
     );
 };
 

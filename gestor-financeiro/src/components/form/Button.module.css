@@ -1,0 +1,26 @@
+.button{
+    padding: 10px 15px;
+
+    background-color: var(--color-bk1);
+    font-family: var(--font);
+    font-weight: 600;
+    color: var(--color-1);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+
+    transition: all .3s ease;
+}
+.button:hover{
+    transform: translate(0px, -10%);
+}
+.button:active{
+    background-color: var(--color-main);
+    color: var(--color-bk1);
+    transition: all .0s ease;
+}
+
+.dark{
+    background-color: var(--color-1);
+    color: var(--color-bk1);
+}

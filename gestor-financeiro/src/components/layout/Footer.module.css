@@ -42,7 +42,7 @@ a:hover{
 }
 
 a:active{
-    color: var(--color-main);
+    color: var(--color-3);
     transition: all .0s ease;
 }
 

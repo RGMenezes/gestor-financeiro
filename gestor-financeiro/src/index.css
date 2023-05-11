@@ -27,13 +27,12 @@ body{
 }
 
 :root{
-  --color-1: #EFF1ED;
-  --color-2: #D7DBD1;
-  --color-main: #FFBD00;
-  --color-bg2: #368F8B;
-  --color-bg1: #002A32;
-
-  --gradient: linear-gradient(to bottom, #368f8b, #247476, #145a60, #074149, #002a32);
+  --color-bg1: #1e272e;
+  --color-bg2: #2f3640;
+  --color-main: #55acee;
+  --color-1: white;
+  --color-2: #FFBD00;
+  --color-3: #18bc9c;
 
   --font: 'Noto Sans JP', sans-serif;
 }

@@ -34,6 +34,9 @@ body{
   --color-2: #FFBD00;
   --color-3: #18bc9c;
 
+  --color-bg-alert: #be0000;
+  --color-main-alert: #fcaaaa;
+
   --font: 'Noto Sans JP', sans-serif;
 }
 

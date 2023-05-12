@@ -11,7 +11,7 @@
 
     background-color: var(--color-main);
     border-radius: 10px 0px 0px 10px;
-    font: normal 600 1.1em var(--font);
+    font: normal 600 1em var(--font);
     color: var(--color-bg1);
 
     cursor: pointer;
@@ -41,4 +41,24 @@
     background-color: var(--color-3);
 
     transition: all .3s ease;
+}
+
+.container .required_label{
+    background-color: var(--color-bg-alert);
+    color: var(--color-main-alert);
+}
+.container .required_label::after{
+    content: "Campo não preenchido!";
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    padding: 10px 0px;
+
+    background-color: var(--color-bg-alert);
+    text-align: center;
+}
+.container .required_input,
+.container .required_input:focus{
+    border-color: var(--color-bg-alert);
 }

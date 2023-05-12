@@ -2,10 +2,26 @@ import Input from './Input';
 import Button from './Button';
 
 import styles from './Card.module.css';
+import { useState } from 'react';
 
-function CardTyping({questions}){
+function CardTyping({questions, handleStep}){
 
-    function teste(){}
+    const [required, setRequired] = useState(false);
+
+    function nextStep(e){
+        const resp = document.querySelector("Input").value;
+
+        setRequired(false)
+
+        e.preventDefault();
+        if(resp) handleStep("next", questions.id, resp);
+        else setRequired(true);
+    };
+
+    function backStep(e){
+        e.preventDefault();
+        handleStep("back", questions.id);
+    };
 
     return(
         <form className={styles.card}>
@@ -15,15 +31,16 @@ function CardTyping({questions}){
                 type={questions.input.type}
                 text={questions.input.text}
                 placeHolder={questions.input.placeHolder}
+                required={required}
             />
-            <div>
+            <div className={styles.buttons}>
                 <Button
                     text="Voltar"
-                    handleOnClick={teste}
+                    handleOnClick={backStep}
                 />
                 <Button 
                     text="Continuar"
-                    handleOnClick={teste}
+                    handleOnClick={nextStep}
                     styleMode="dark"
                 />
             </div>

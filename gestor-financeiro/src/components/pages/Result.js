@@ -6,8 +6,6 @@ function Result(){
 
     const location = useLocation();
     const user = location.state.user;
-
-    console.log(user, location.pathname);
     
     return(
         <>

@@ -6,32 +6,48 @@ import Header from "../layout/Header";
 
 import styles from "./Questions.module.css";
 
-function Questions(){
+let user = {};
 
-    let user = {};
+function Questions(){
 
     const [stepCard, setStepCard] = useState(0);
     const [showCard, setShowCard] = useState(false);
+    const [cardStyle, setCardStyle] = useState('');
+    const [cardStyleBack, setCardStyleBack] = useState(false);
+    const [cardStyleBackStep0, setCardStyleBackStep0] = useState(true);
     const navigate = useNavigate();
 
     function handleStep(action, step, userResp){
         
-        console.log(user)
         user = Object.assign(user, userResp);
 
         if(step === 0){
-            if(action === "back") navigate("/");
-            else setStepCard(step+1);
+            if(action === "back"){
+                navigate("/");
+            }else{
+                setStepCard(step+1); 
+                setCardStyleBack(false);
+            };
 
         }else{
-            if(action === "next" && questions[step+1]) setStepCard(step+1);
-            else if(action === "next") navigate("/result", {state: {user: user}});
-            else setStepCard(step-1);
+            setCardStyleBackStep0(false);
+
+            if(action === "next" && questions[step+1]){ 
+                setStepCard(step+1); 
+                setCardStyleBack(false);
+            }else if(action === "next"){ 
+                navigate("/result", {state: {user: user}});
+                setCardStyleBack(false);
+            }else{ 
+                setStepCard(step-1); 
+                setCardStyleBack(true);
+            };
         };
     };
 
     const questions = [
         {
+            type: "typing",
             question: "Como podemos te chamar?",
             input: {
                 name: 'name',
@@ -42,6 +58,7 @@ function Questions(){
             id: 0
         },
         {
+            type: "typing",
             question: "Qual o valor médio da sua conta de energia?",
             input: {
                 name: "energi",
@@ -50,6 +67,23 @@ function Questions(){
                 placeHolder: "Digite o valor"
             },
             id: 1
+        },
+        {
+            type: "typing",
+            question: "E da sua conta de água?",
+            input: {
+                name: "water",
+                type: "number",
+                text: "Água:",
+                placeHolder: "Digite o valor"
+            },
+            id: 2
+        },
+        {
+            type: "choice",
+            question: "",
+            choices: {},
+            id: 2
         }
     ];
 
@@ -57,8 +91,46 @@ function Questions(){
         <>
             <Header />
             <section className={styles.questions} >
-                {useEffect(() => { setShowCard(true) }, [stepCard])}
-                {showCard && (<CardTyping handleStep={handleStep} questions={questions[stepCard]} />)}
+                {useEffect(() => {
+                    if(stepCard === 0 && cardStyleBackStep0){
+                        setCardStyle("card_next"); 
+                        setTimeout(() => {
+                            setCardStyle('');
+                            setShowCard(true);
+                        }, 50);
+                    }else if(cardStyleBack){
+                        setCardStyle("card_next"); 
+                        setTimeout(() => {
+                            setCardStyle("card_back");
+                            setTimeout(() => {
+                                setCardStyle('');
+                                setShowCard(true); 
+                            }, 200);
+                        }, 200);
+                    }else{
+                        setCardStyle("card_back"); 
+                        setTimeout(() => {
+                            setCardStyle("card_next"); 
+                            setTimeout(() => {
+                                setCardStyle('');
+                                setShowCard(true);
+                            }, 200);
+                        }, 200);
+                    };
+                }, [stepCard])}
+                {showCard && (
+                    <div className={`${styles[cardStyle]} ${styles.card}`}>
+                        { questions[stepCard].type === "typing" && (
+                            <CardTyping
+                                handleStep={handleStep}
+                                questions={questions[stepCard]}
+                            />
+                        )}
+                        { questions[stepCard].type === "choice" && (
+                            <p>choice</p>
+                        )}
+                    </div>
+                )}
             </section>
         </>
     );

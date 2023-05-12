@@ -8,3 +8,17 @@
 
     background-color: var(--color-bg2);
 }
+
+
+.questions .card{
+    transform-origin: center bottom;
+    transition: all .2s ease-in-out;
+}
+.questions .card_next{
+    transform: translate(90%) scale(.5);
+    opacity: .0;
+}
+.questions .card_back{
+    transform: translate(-90%) scale(.5);
+    opacity: .0;
+}

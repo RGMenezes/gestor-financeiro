@@ -24,7 +24,7 @@ function Input({name, type, text, placeHolder, required}){
             <input 
                 className={`${required && styles['required_input']}`} 
                 onFocus={focusLabel} onBlur={focusLabel} 
-                type={type} id={name} name={name} placeholder={placeHolder} 
+                type={type} id={name} name={name} placeholder={placeHolder}
             />
         </div>
     );

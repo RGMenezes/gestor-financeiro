@@ -14,7 +14,7 @@ function CardTyping({questions, handleStep}){
         setRequired(false)
 
         e.preventDefault();
-        if(resp) handleStep("next", questions.id, resp);
+        if(resp) handleStep("next", questions.id, {[questions.input.name]: resp});
         else setRequired(true);
     };
 

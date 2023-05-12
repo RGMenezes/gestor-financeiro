@@ -2,18 +2,23 @@ import { useEffect, useState } from "react";
 import {useNavigate} from "react-router-dom";
 
 import CardTyping from '../form/CardTyping';
+import Header from "../layout/Header";
 
 import styles from "./Questions.module.css";
 
 function Questions(){
 
-    const user = {};
+    let user = {};
 
     const [stepCard, setStepCard] = useState(0);
     const [showCard, setShowCard] = useState(false);
     const navigate = useNavigate();
 
     function handleStep(action, step, userResp){
+        
+        console.log(user)
+        user = Object.assign(user, userResp);
+
         if(step === 0){
             if(action === "back") navigate("/");
             else setStepCard(step+1);
@@ -49,10 +54,13 @@ function Questions(){
     ];
 
     return(
-        <section className={styles.questions} >
-            {useEffect(() => { setShowCard(true) }, [stepCard])}
-            {showCard && (<CardTyping handleStep={handleStep} questions={questions[stepCard]} />)}
-        </section>
+        <>
+            <Header />
+            <section className={styles.questions} >
+                {useEffect(() => { setShowCard(true) }, [stepCard])}
+                {showCard && (<CardTyping handleStep={handleStep} questions={questions[stepCard]} />)}
+            </section>
+        </>
     );
 };
 

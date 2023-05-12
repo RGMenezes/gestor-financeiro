@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import {useNavigate} from "react-router-dom";
 
 import CardTyping from '../form/CardTyping';
+import CardChoice from '../form/CardChoice';
 import Header from "../layout/Header";
 
 import styles from "./Questions.module.css";
@@ -81,9 +82,14 @@ function Questions(){
         },
         {
             type: "choice",
-            question: "",
-            choices: {},
-            id: 2
+            question: "Teste",
+            choices: {
+                choice1: ["pergunta", "resp"],
+                choice2: ["pergunta", "resp"],
+                choice3: ["pergunta", "resp"],
+                choice4: ["pergunta", "resp"]
+            },
+            id: 3
         }
     ];
 
@@ -127,7 +133,10 @@ function Questions(){
                             />
                         )}
                         { questions[stepCard].type === "choice" && (
-                            <p>choice</p>
+                            <CardChoice 
+                                handleStep={handleStep}
+                                questions={questions[stepCard]}
+                            />
                         )}
                     </div>
                 )}

@@ -1,0 +1,44 @@
+.container{
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+}
+
+.container label{
+    padding: 15px 10px;
+    width: min-content;
+
+    background-color: var(--color-main);
+    border-radius: 10px 0px 0px 10px;
+    font: normal 600 1.1em var(--font);
+    color: var(--color-bg1);
+
+    cursor: pointer;
+
+    transition: all .3s ease;
+}
+
+.container input{
+    width: 100%;
+
+    border: 2px solid var(--color-main);
+    border-left: none;
+    border-radius: 0px 10px 10px 0px;
+    font: normal normal 1em var(--font);
+    text-indent: 10px;
+    color: var(--color-bg2);
+
+    transition: all .3s ease;
+}
+
+.container input:focus{
+    outline: none;
+    border-color: var(--color-3);
+}
+
+.container .focus{
+    background-color: var(--color-3);
+
+    transition: all .3s ease;
+}

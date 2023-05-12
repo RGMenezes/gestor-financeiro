@@ -1,0 +1,13 @@
+.card{
+    padding: 20px 10px;
+
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto auto auto;
+    justify-items: center;
+    align-items: center;
+    gap: 100px;
+
+    background-color: var(--color-bg1);
+    border-radius: 20px;
+}

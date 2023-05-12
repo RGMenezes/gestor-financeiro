@@ -10,6 +10,13 @@
 
     background-color: var(--color-bg2);
 }
+.home > *{
+    transition: all .3s ease-in-out;
+}
+
+.home_opacity > *{
+    opacity: 0;
+}
 
 .home img{
     width: 200px;

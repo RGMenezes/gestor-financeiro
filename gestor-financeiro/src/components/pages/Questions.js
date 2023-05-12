@@ -93,10 +93,10 @@ function Questions(){
             <section className={styles.questions} >
                 {useEffect(() => {
                     if(stepCard === 0 && cardStyleBackStep0){
-                        setCardStyle("card_next"); 
+                        setShowCard(true);
+                        setCardStyle("card_next");
                         setTimeout(() => {
                             setCardStyle('');
-                            setShowCard(true);
                         }, 50);
                     }else if(cardStyleBack){
                         setCardStyle("card_next"); 

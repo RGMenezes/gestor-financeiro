@@ -1,7 +1,7 @@
 import Input from './Input';
 import Button from './Button';
 
-import styles from './Card.module.css';
+import styles from './CardTyping.module.css';
 import { useState } from 'react';
 
 function CardTyping({questions, handleStep}){

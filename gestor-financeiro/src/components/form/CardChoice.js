@@ -1,34 +1,36 @@
-import Button from './Button';
+import ButtonChoice from './ButtonChoice';
 
-import styles from './Card.module.css';
+import styles from './CardChoice.module.css';
 
 function CardChoice({questions, handleStep}){
 
-    function nextStep(e){
-        e.preventDefault();
-        handleStep("next", questions.id, [questions.choice[1]]);
-    };
-
-    function backStep(e){
-        e.preventDefault();
-        handleStep("back", questions.id);
+    function selectedChoice(arr){
+        const resp = {[questions.name]: arr[1]};
+        handleStep("next", questions.id, resp);
     };
 
     return(
-        <form className={styles.card}>
+        <section className={styles.card}>
             <h1>{questions.question}</h1>
             <div className={styles.buttons}>
-                <Button
-                    text="Voltar"
-                    handleOnClick={backStep}
+                <ButtonChoice
+                    handleOnClick={selectedChoice.bind(this, questions.choices.choice1)}
+                    text={questions.choices.choice1[0]}
                 />
-                <Button 
-                    text="Continuar"
-                    handleOnClick={nextStep}
-                    styleMode="dark"
+                <ButtonChoice
+                    handleOnClick={selectedChoice.bind(this, questions.choices.choice2)}
+                    text={questions.choices.choice2[0]}
+                />
+                <ButtonChoice
+                    handleOnClick={selectedChoice.bind(this, questions.choices.choice3)}
+                    text={questions.choices.choice3[0]}
+                />
+                <ButtonChoice
+                    handleOnClick={selectedChoice.bind(this, questions.choices.choice4)}
+                    text={questions.choices.choice4[0]}
                 />
             </div>
-        </form>
+        </section>
     );
 };
 

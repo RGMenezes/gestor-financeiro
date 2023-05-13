@@ -82,12 +82,13 @@ function Questions(){
         },
         {
             type: "choice",
-            question: "Teste",
+            question: "Sobre imóveis, qual a sua escolha?",
+            name: "conservative",
             choices: {
-                choice1: ["pergunta", "resp"],
-                choice2: ["pergunta", "resp"],
-                choice3: ["pergunta", "resp"],
-                choice4: ["pergunta", "resp"]
+                choice1: ["Alugar", 10],
+                choice2: ["Comprar pronta", 8],
+                choice3: ["Construir", 6],
+                choice4: ["Já possou um imóvel", 4]
             },
             id: 3
         }

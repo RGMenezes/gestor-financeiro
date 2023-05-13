@@ -34,14 +34,14 @@ function CardTyping({questions, handleStep}){
                 required={required}
             />
             <div className={styles.buttons}>
-                <Button
-                    text="Voltar"
-                    handleOnClick={backStep}
-                />
                 <Button 
                     text="Continuar"
                     handleOnClick={nextStep}
                     styleMode="dark"
+                />
+                <Button
+                    text="Voltar"
+                    handleOnClick={backStep}
                 />
             </div>
         </form>

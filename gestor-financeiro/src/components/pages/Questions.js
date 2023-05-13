@@ -62,7 +62,7 @@ function Questions(){
             type: "typing",
             question: "Qual o valor médio da sua conta de energia?",
             input: {
-                name: "energi",
+                name: "energy",
                 type: "number",
                 text: "Energia:",
                 placeHolder: "Digite o valor"

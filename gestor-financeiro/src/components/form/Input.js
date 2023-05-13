@@ -14,7 +14,7 @@ function Input({name, type, text, placeHolder, required}){
 
     return(
         <div className={styles.container} >
-            <label 
+            <label
                 className={`${required && styles['required_label']} ${styles[label]}` } 
                 htmlFor={name} 
             >

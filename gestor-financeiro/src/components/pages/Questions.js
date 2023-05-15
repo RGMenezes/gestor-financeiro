@@ -12,6 +12,7 @@ let user = {};
 function Questions(){
 
     const [stepCard, setStepCard] = useState(0);
+    const [updateCard, setUpdateCard] = useState(0);
     const [showCard, setShowCard] = useState(false);
     const [cardStyle, setCardStyle] = useState('');
     const [cardStyleBack, setCardStyleBack] = useState(false);
@@ -363,37 +364,37 @@ function Questions(){
                             setCardStyle('');
                         }, 50);
                     }else if(cardStyleBack){
-                        setCardStyle("card_next"); 
+                        setCardStyle("card_next");
                         setTimeout(() => {
                             setCardStyle("card_back");
                             setTimeout(() => {
                                 setCardStyle('');
-                                setShowCard(true); 
+                                setUpdateCard(stepCard);
                             }, 200);
                         }, 200);
                     }else{
-                        setCardStyle("card_back"); 
+                        setCardStyle("card_back");
                         setTimeout(() => {
                             setCardStyle("card_next"); 
                             setTimeout(() => {
                                 setCardStyle('');
-                                setShowCard(true);
+                                setUpdateCard(stepCard);
                             }, 200);
                         }, 200);
                     };
                 }, [stepCard])}
                 {showCard && (
                     <div className={`${styles[cardStyle]} ${styles.card}`}>
-                        { questions[stepCard].type === "typing" && (
+                        { questions[updateCard].type === "typing" && (
                             <CardTyping
                                 handleStep={handleStep}
-                                questions={questions[stepCard]}
+                                questions={questions[updateCard]}
                             />
                         )}
-                        { questions[stepCard].type === "choice" && (
+                        { questions[updateCard].type === "choice" && (
                             <CardChoice 
                                 handleStep={handleStep}
-                                questions={questions[stepCard]}
+                                questions={questions[updateCard]}
                             />
                         )}
                     </div>

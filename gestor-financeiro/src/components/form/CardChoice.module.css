@@ -1,5 +1,6 @@
 .card{
     padding: 20px 20px;
+    width: 100%;
     max-width: 350px;
     min-height: 450px;
 
@@ -21,8 +22,7 @@
 }
 
 .card .buttons{
-    max-width: 100%;
-    min-width: 310px;
+    min-width: 100%;
 
     display: grid;
     grid-template-columns: auto;

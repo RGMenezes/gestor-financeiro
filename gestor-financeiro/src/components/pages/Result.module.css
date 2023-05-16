@@ -1,0 +1,10 @@
+.body_result{
+    min-height: 100vh;
+    padding: 120px 10px 60px 10px;
+
+    background-color: var(--color-1);
+};
+
+.result_graphic{
+    
+}

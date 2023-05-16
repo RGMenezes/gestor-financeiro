@@ -18,7 +18,15 @@ function Result(){
             <section className={styles.result_graphic}>
                 <div>
                     <Graphic
-                        arrGraphic={[[50, "Brasil"], [10, "França"], [20, "Noruega"], [15, "EUA"], [5, "China"]]}
+                        theme="black"
+                        arrGraphic={[
+                            [50, "despesa"],
+                            [75, "renda"],
+                            [10, "fiis"],
+                            [15, "viagens"],
+                            [33, "ações"],
+                            [87, "energia"],
+                        ]}
                     />
                 </div>
             </section>

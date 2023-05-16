@@ -1,33 +1,35 @@
 import { useEffect, useState } from 'react';
 import styles from './Graphic.module.css';
 
-function Graphic({arrGraphic}){
-
-    const [showBar, setShowBar] = useState([]);
-
-    function barPositioning(bar){
-        const barHeight = arrGraphic[bar][0];
-        const barWidth = (900 / arrGraphic.length) * 0.9;
-        const barX = ((900 / arrGraphic.length) - (barWidth / 2)) * (bar + 1);
-
-        showBar.push(<line x1={barX} x2={barX} y1={barHeight} y2='700' strokeWidth={barWidth} />);
-    };
+function Graphic({theme, arrGraphic}){
+    const [showBar, setShowBar] = useState();
+    const [showTextBar, setShowTextBar] = useState();
 
     return(
-        <svg className={styles.graphic}
+        <svg className={`${styles.graphic} ${styles[theme]}`}
             viewBox='0 0 1000 1000'
         >
             {useEffect( () => {
-                for(let contI = 0; contI < arrGraphic.length; contI++){
+                const arrGraphicLength = arrGraphic.length;
+                let arrBar = [];
+                let arrTextBar = [];
+                for(let contBar = 0; contBar < arrGraphicLength; contBar++){
+                    
+                    const barHeight = ((100 - arrGraphic[contBar][0]) * 600) / 100 + 100;
+                    const barWidth = (900 / arrGraphicLength) * 0.8;
+                    const barX = (900 / arrGraphicLength) * contBar + ( 100 + (900 / arrGraphicLength) / 2);
 
-                    barPositioning(contI);
-                    console.log(showBar)
+                    arrBar.push(<line key={contBar + 1} x1={barX} x2={barX} y1={barHeight} y2='700' strokeWidth={barWidth} />);
+                    arrTextBar.push(<text key={contBar + 1 * 100} x='220' y={1515 - barX} >{arrGraphic[contBar][1]}</text>);
 
-                    //(<line x1={} x2={} y1={} y2='700' strokeWidth={} />
-                    //<text x='220' y='1325' >Ações Int.</text>)
+                    setShowBar(arrBar);
+                    setShowTextBar(arrTextBar);
                 };
-
+                console.log(arrBar, arrTextBar);
             }, [arrGraphic])}
+
+            {showBar}
+            {showTextBar}
 
             <text className={styles.number} x='0' y='115' >100</text>
             <text className={styles.number} x='22.5' y='265' >75</text>

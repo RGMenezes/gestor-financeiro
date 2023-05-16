@@ -382,7 +382,7 @@ function Questions(){
                             }, 200);
                         }, 200);
                     };
-                }, [stepCard])}
+                }, [stepCard, cardStyleBack, cardStyleBackStep0])}
                 {showCard && (
                     <div className={`${styles[cardStyle]} ${styles.card}`}>
                         { questions[updateCard].type === "typing" && (

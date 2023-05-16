@@ -232,8 +232,8 @@ function Questions(){
             input: {
                 name: 'entertainment',
                 type: 'number',
-                text: 'Entretenimento:',
-                placeHolder: 'Valor gasto'
+                text: 'Valor:',
+                placeHolder: 'Gasto com entretenimento'
             },
             id: 16
         },

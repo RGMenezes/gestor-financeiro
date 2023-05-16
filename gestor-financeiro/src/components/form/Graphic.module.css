@@ -29,7 +29,7 @@
 }
 
 .black{
-    background-color: var(--color-bg2);
+    background-color: var(--color-bg1);
 }
 .black .line_fixed{
     stroke: var(--color-1);

@@ -25,7 +25,6 @@ function Graphic({theme, arrGraphic}){
                     setShowBar(arrBar);
                     setShowTextBar(arrTextBar);
                 };
-                console.log(arrBar, arrTextBar);
             }, [arrGraphic])}
 
             {showBar}

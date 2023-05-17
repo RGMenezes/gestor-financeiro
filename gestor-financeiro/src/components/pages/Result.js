@@ -4,6 +4,7 @@ import Header from "../layout/Header";
 
 import styles from './Result.module.css';
 import Graphic from "../form/Graphic";
+import Legend from "../form/Legend";
 
 function Result(){
 
@@ -11,7 +12,7 @@ function Result(){
     const resultFormUser = location.state.user;
     
     const user = {
-        income: parseFloat(resultFormUser.wage + resultFormUser.extra_income),
+        income: parseFloat(resultFormUser.wage) + parseFloat(resultFormUser.extra_income),
         profile: {
             name: resultFormUser.name,
             children: parseFloat(resultFormUser.children),
@@ -50,38 +51,58 @@ function Result(){
     };
 
     const arrSummary = [
-        [Object.entries(user.fixed_expenses).reduce((acc, curr) => acc + curr[1], 0)],
-        [Object.entries(user.variable_expenses).reduce((acc, curr) => acc + curr[1], 0)],
-        [Object.entries(user.debts).reduce((acc, curr) => acc + curr[1], 0)],
-        [Object.entries(user.investments).reduce((acc, curr) => acc + curr[1], 0)],
+        Object.entries(user.fixed_expenses).reduce((acc, curr) => acc + curr[1], 0),
+        Object.entries(user.variable_expenses).reduce((acc, curr) => acc + curr[1], 0),
+        Object.entries(user.debts).reduce((acc, curr) => acc + curr[1], 0),
+        Object.entries(user.investments).reduce((acc, curr) => acc + curr[1], 0)
     ];
 
-    console.log(arrSummary);
+    const calculatePercentage = (total, percentage) => Math.floor(percentage * 100 / total) ;
     
     return(
         <main className={styles.body_result} >
             <Header />
             <h1>Resultado</h1>
-            <section className={styles.result_graphic}>
-                <div>
-                    <section>
-                        <h1></h1>
+            <section className={styles.container_graphic}>
+                <section className={styles.result_graphic}>
+                    <h2>Resumo financeiro</h2>
+                    <div className={styles.graphic} >
                         <Graphic
                             theme="black"
                             arrGraphic={[
-                                [50, "despesa"],
-                                [75, "renda"],
-                                [10, "fiis"],
-                                [15, "viagens"],
-                                [33, "ações"],
+                                [calculatePercentage(user.income, arrSummary[0]), "D. fixas"],
+                                [calculatePercentage(user.income, arrSummary[1]), "D. variáveis"],
+                                [calculatePercentage(user.income, arrSummary[2]), "Dívidas"],
+                                [calculatePercentage(user.income, arrSummary[3]), "Investimento"],
                             ]}
                         />
+                    </div>
 
-                        <div className={styles.legend_graphic}>
-                            <p></p>
-                        </div>
-                    </section>
-                </div>
+                    <div className={styles.legend_graphic}>
+                        <Legend
+                            theme="dark" 
+                            text={`Despesas Fixas: R$${arrSummary[0]}`} 
+                            description="" 
+                        />
+                        <Legend 
+                            theme="dark"
+                            text={`Despesas Variáveis: R$${arrSummary[1]}`} 
+                            description="" 
+                        />
+                        <Legend 
+                            theme="dark"
+                            text={`Dívidas: R$${arrSummary[2]}`} 
+                            description="" 
+                        />
+                        <Legend 
+                            theme="dark"
+                            text={`Investimento: R$${arrSummary[3]}`} 
+                            description="" 
+                        />
+
+
+                    </div>
+                </section>
             </section>
         </main>
     );

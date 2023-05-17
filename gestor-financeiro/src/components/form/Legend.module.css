@@ -1,0 +1,35 @@
+.legend{
+    cursor: pointer;
+    font: normal 600 0.9em var(--font);
+    color: var(--color-bg1);
+
+    transition: all .3s ease;
+}
+.legend:hover{
+    color: var(--color-3);
+}
+.dark{
+    color: var(--color-1);
+}
+
+.description{
+    z-index: 1;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    width: 100vw;
+    padding: 50px 10px;
+
+    background-color: var(--color-bg1);
+    font: normal normal .9em var(--font);
+    text-align: center;
+    color: var(--color-1);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+
+    transform: translate(0px, 110%);
+    transition: all .3s ease;
+}
+
+.description_on{
+    transform: none;
+}

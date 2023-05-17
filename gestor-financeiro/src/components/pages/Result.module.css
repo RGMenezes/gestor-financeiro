@@ -5,6 +5,56 @@
     background-color: var(--color-1);
 };
 
-.result_graphic{
+.body_result h1{
+    margin: 50px auto;
 
+    font: normal 400 0em var(--font);
+    color: var(--color-bg1);
+    text-align: center;
+}
+
+.container_graphic{
+    padding: 100px 0px;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+}
+
+.result_graphic{
+    max-width: 350px;
+    padding: 30px 10px;
+
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 30px;
+    align-items: center;
+    justify-content: center;
+
+    background-color: var(--color-bg2);
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+.result_graphic h2{
+    font: normal 800 1.35em var(--font);
+    color: var(--color-1);
+    text-align: center;
+}
+
+.graphic{
+    width: 100%;
+    padding: 10px;
+
+    background-color: var(--color-bg1);
+    border-radius: 20px;
+}
+
+.legend_graphic{
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px 10px;
 }

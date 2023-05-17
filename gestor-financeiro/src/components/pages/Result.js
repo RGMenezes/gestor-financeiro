@@ -62,8 +62,12 @@ function Result(){
     return(
         <main className={styles.body_result} >
             <Header />
-            <h1>Resultado</h1>
+            <div className={styles.result_title}>
+                <h1>Resultado</h1>
+                <p>{user.profile.name}, confira sua análise financeira personalizada e descubra seus resultados.</p>
+            </div>
             <section className={styles.container_graphic}>
+
                 <section className={styles.result_graphic}>
                     <h2>Resumo financeiro</h2>
                     <div className={styles.graphic} >
@@ -73,7 +77,7 @@ function Result(){
                                 [calculatePercentage(user.income, arrSummary[0]), "D. fixas"],
                                 [calculatePercentage(user.income, arrSummary[1]), "D. variáveis"],
                                 [calculatePercentage(user.income, arrSummary[2]), "Dívidas"],
-                                [calculatePercentage(user.income, arrSummary[3]), "Investimento"],
+                                [calculatePercentage(user.income, arrSummary[3]), "Investimento"]
                             ]}
                         />
                     </div>
@@ -82,27 +86,76 @@ function Result(){
                         <Legend
                             theme="dark" 
                             text={`Despesas Fixas: R$${arrSummary[0]}`} 
-                            description="" 
+                            description="Despesas fixas são despesas de serviços e produtos que sempre estarão presentes no orçamento mensal como energia, água, alimentação, gás, etc." 
                         />
                         <Legend 
                             theme="dark"
                             text={`Despesas Variáveis: R$${arrSummary[1]}`} 
-                            description="" 
+                            description="Despesas variáveis são despesas de serviços e produtos que podem estar ou não no orçamento mensal como lazer, entretenimento, viagens, etc." 
                         />
                         <Legend 
                             theme="dark"
                             text={`Dívidas: R$${arrSummary[2]}`} 
-                            description="" 
+                            description="Dívidas são despesas que possuem um prazo determinado para serem pagos e que podem acarretar em juros como cartão de crédito, financiamentos, empréstimos, etc." 
                         />
                         <Legend 
                             theme="dark"
                             text={`Investimento: R$${arrSummary[3]}`} 
-                            description="" 
+                            description="Investimento é tudo aquilo que depositamos dinheiro com o objetivo de gerar algum benefício no futuro como fundos imobiliários, ações, etc." 
                         />
-
-
                     </div>
                 </section>
+
+                <section className={styles.result_graphic}>
+                    <h2>Despesas Fixas</h2>
+                    <div className={styles.graphic} >
+                        <Graphic
+                            theme="black"
+                            arrGraphic={[
+                                [calculatePercentage(arrSummary[0], user.fixed_expenses.energy), "Energia"],
+                                [calculatePercentage(arrSummary[0], user.fixed_expenses.water), "Água"],
+                                [calculatePercentage(arrSummary[0], user.fixed_expenses.rent), "Aluguel"],
+                                [calculatePercentage(arrSummary[0], user.fixed_expenses.internet), "Internet"],
+                                [calculatePercentage(arrSummary[0], user.fixed_expenses.food), "Alimentação"],
+                                [calculatePercentage(arrSummary[0], user.fixed_expenses.other), "Outros"],
+                            ]}
+                        />
+                    </div>
+
+                    <div className={styles.legend_graphic}>
+                        <Legend
+                            theme="dark" 
+                            text={`Energia: R$${user.fixed_expenses.energy}`} 
+                            description="Valor da conta mensal de energia." 
+                        />
+                        <Legend
+                            theme="dark" 
+                            text={`Água: R$${user.fixed_expenses.water}`} 
+                            description="Valor da conta mensal de água." 
+                        />
+                        <Legend
+                            theme="dark" 
+                            text={`Aluguel: R$${user.fixed_expenses.rent}`} 
+                            description="Valor do aluguel pago por mês." 
+                        />
+                        <Legend
+                            theme="dark" 
+                            text={`Internet: R$${user.fixed_expenses.internet}`} 
+                            description="Valor da conta mensal de Internet." 
+                        />
+                        <Legend
+                            theme="dark" 
+                            text={`Alimentação: R$${user.fixed_expenses.food}`} 
+                            description="Valor gasto por mês com alimentação." 
+                        />
+                        <Legend
+                            theme="dark" 
+                            text={`Outros: R$${user.fixed_expenses.other}`} 
+                            description="Outras despesas fixas como gás, aluguel do carro, plano de saúde, etc." 
+                        />
+                    </div>
+                </section>
+
             </section>
         </main>
     );

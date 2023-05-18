@@ -82,6 +82,8 @@ function Result(){
                         />
                     </div>
 
+                    <h3>Total: R${user.income}</h3>
+
                     <div className={styles.legend_graphic}>
                         <Legend
                             theme="dark" 
@@ -122,6 +124,8 @@ function Result(){
                         />
                     </div>
 
+                    <h3>Total: R${arrSummary[0]}</h3>
+
                     <div className={styles.legend_graphic}>
                         <Legend
                             theme="dark" 
@@ -156,6 +160,148 @@ function Result(){
                     </div>
                 </section>
 
+                <section className={styles.result_graphic}>
+                    <h2>Despesas variáveis</h2>
+                    <div className={styles.graphic} >
+                        <Graphic
+                            theme="black"
+                            arrGraphic={[
+                                [calculatePercentage(arrSummary[1], user.variable_expenses.entertainment), "Entrete."],
+                                [calculatePercentage(arrSummary[1], user.variable_expenses.leisure), "Lazer"],
+                                [calculatePercentage(arrSummary[1], user.variable_expenses.trips), "Viagens"],
+                                [calculatePercentage(arrSummary[1], user.variable_expenses.other), "Outros"]
+                            ]}
+                        />
+                    </div>
+
+                    <h3>Total: R${arrSummary[1]}</h3>
+
+                    <div className={styles.legend_graphic}>
+                        <Legend
+                            theme="dark" 
+                            text={`Entretenimento: R$${user.variable_expenses.entertainment}`} 
+                            description="Dinheiro gasto com entretenimento como cinema, teatro, etc." 
+                        />
+                        <Legend
+                            theme="dark" 
+                            text={`Lazer: R$${user.variable_expenses.leisure}`} 
+                            description="Dinheiro gasto com lazer como spa, prática de esporte, etc." 
+                        />
+                        <Legend
+                            theme="dark" 
+                            text={`Viagens: R$${user.variable_expenses.trips}`} 
+                            description="Dinheiro gasto com Viagens como praia, viagens internacionais, etc." 
+                        />
+                        <Legend
+                            theme="dark" 
+                            text={`Outros: R$${user.variable_expenses.other}`} 
+                            description="Dinheiro gasto com outros tipos de despesas variáveis como comprar roupas, conserto do carro, etc." 
+                        />
+                    </div>
+                </section>
+
+                <section className={styles.result_graphic}>
+                    <h2>Dívidas</h2>
+                    <div className={styles.graphic} >
+                        <Graphic
+                            theme="black"
+                            arrGraphic={[
+                                [calculatePercentage(arrSummary[2], user.debts.credit_card), "C. de Crédito"],
+                                [calculatePercentage(arrSummary[2], user.debts.loan_financing), "Emp. e fin."],
+                                [calculatePercentage(arrSummary[2], user.debts.other), "Outros"]
+                            ]}
+                        />
+                    </div>
+
+                    <h3>Total: R${arrSummary[2]}</h3>
+
+                    <div className={styles.legend_graphic}>
+                        <Legend
+                            theme="dark" 
+                            text={`Cartão de crédito: R$${user.debts.credit_card}`} 
+                            description="Fatura do cartão de crédito." 
+                        />
+                        <Legend
+                            theme="dark" 
+                            text={`Empréstimo e financiamento: R$${user.debts.loan_financing}`} 
+                            description="Valor mensal do financiamento e/ou empréstimo." 
+                        />
+                        <Legend
+                            theme="dark" 
+                            text={`Outros: R$${user.debts.other}`} 
+                            description="Outras dívidas como boleto de cobrança, etc." 
+                        />
+                    </div>
+                </section>
+
+                <section className={styles.result_graphic}>
+                    <h2>Investimentos</h2>
+                    <div className={styles.graphic} >
+                        <Graphic
+                            theme="black"
+                            arrGraphic={[
+                                [calculatePercentage(arrSummary[3], user.investments.box), "Caixa"],
+                                [calculatePercentage(arrSummary[3], user.investments.national_stocks), "A. nacionais"],
+                                [calculatePercentage(arrSummary[3], user.investments.international_shares), "A. inter."],
+                                [calculatePercentage(arrSummary[3], user.investments.real_estate), "F. imobi."],
+                                [calculatePercentage(arrSummary[3], user.investments.risk_assets), "I. de risco"],
+                                [calculatePercentage(arrSummary[3], user.investments.other), "Outros"],
+                            ]}
+                        />
+                    </div>
+
+                    <h3>Total: R${arrSummary[3]}</h3>
+
+                    <div className={styles.legend_graphic}>
+                        <Legend
+                            theme="dark" 
+                            text={`Caixa: R$${user.investments.box}`} 
+                            description="Dinheiro guardado para emergências." 
+                        />
+                        <Legend
+                            theme="dark" 
+                            text={`Ações nacionais: R$${user.investments.national_stocks}`} 
+                            description="Dinheiro investido em seu próprio país." 
+                        />
+                        <Legend
+                            theme="dark" 
+                            text={`Ações internacionais: R$${user.investments.international_shares}`} 
+                            description="Dinheiro investido em países estrangeiros." 
+                        />
+                        <Legend
+                            theme="dark" 
+                            text={`Fundos imobiliários: R$${user.investments.real_estate}`} 
+                            description="Dinheiro investido em imóveis." 
+                        />
+                        <Legend
+                            theme="dark" 
+                            text={`Investimento de risco: R$${user.investments.risk_assets}`} 
+                            description="Dinheiro investido em ativos de risco como nfts, criptomoedas, etc." 
+                        />
+                        <Legend
+                            theme="dark" 
+                            text={`Outros: R$${user.investments.other}`} 
+                            description="Outros investimentos." 
+                        />
+                    </div>
+                </section>
+
+            </section>
+
+            <section className={styles.result_text}>
+                <h2>O que percebemos?</h2>
+
+                <h3>Despesas</h3>
+                <p>Testando <strong>paragráfo</strong> para definir o seu estilo</p>
+                
+                <h3>Investimentoa</h3>
+                <p></p>
+
+                <h3>Padrão de vida</h3>
+                <p></p>
+
+                <h3>Escolhas</h3>
+                <p></p>
             </section>
         </main>
     );

@@ -83,19 +83,19 @@ function Questions(){
         },
         {
             type: "choice",
-            question: "Você é responsavel por alguém?",
+            question: "Você é responsavel por alguém que precisa de cuidados especiais?",
             name: "responsible_for_someone",
             choices: {
                 choice1: ["Sim, por 1 pessoa", 1],
                 choice2: ["Sim, por 2 pessoas", 2],
                 choice3: ["Sim, mas de 2 pessoas", 3],
-                choice4: ["Não, cuido apenas de mim mesmo", 0]
+                choice4: ["Não", 0]
             },
             id: 3
         },
         {
             type: "typing",
-            question: "Quantos filhos você tem?",
+            question: "Quantos filhos, com menos de 18 anos, você tem?",
             input: {
                 name: 'children',
                 type: 'number',
@@ -109,10 +109,10 @@ function Questions(){
             question: "Qual a sua contribuição nas despesas mensais de sua família?",
             name: "family_responsibility",
             choices: {
-                choice1: ["Contribu-o com menos da metade", 1.5],
+                choice1: ["Contribu-o com menos da metade", 1],
                 choice2: ["Contribu-o com a metade", 2],
                 choice3: ["Contribu-o com mais da metade", 3],
-                choice4: ["Não contrubu-o", 1]
+                choice4: ["Não contrubu-o", 0]
             },
             id: 5
         },

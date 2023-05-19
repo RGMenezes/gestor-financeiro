@@ -24,7 +24,7 @@ function Result(){
             investment_evaluation: resultFormUser.investment_evaluation,
             investment_knowledge: resultFormUser.investment_knowledge
         },
-        fixed_expenses: {
+        fixed_result: {
             energy: parseFloat(resultFormUser.energy),
             water: parseFloat(resultFormUser.water),
             food: parseFloat(resultFormUser.food),
@@ -32,7 +32,7 @@ function Result(){
             rent: parseFloat(resultFormUser.rent),
             other: parseFloat(resultFormUser.other_indespensable)
         },
-        variable_expenses: {
+        variable_result: {
             leisure: parseFloat(resultFormUser.leisure),
             entertainment: parseFloat(resultFormUser.entertainment),
             trips: parseFloat(resultFormUser.trips),
@@ -54,33 +54,77 @@ function Result(){
     };
 
     const arrSummary = [
-        Object.entries(user.fixed_expenses).reduce((acc, curr) => acc + curr[1], 0),
-        Object.entries(user.variable_expenses).reduce((acc, curr) => acc + curr[1], 0),
+        Object.entries(user.fixed_result).reduce((acc, curr) => acc + curr[1], 0),
+        Object.entries(user.variable_result).reduce((acc, curr) => acc + curr[1], 0),
         Object.entries(user.debts).reduce((acc, curr) => acc + curr[1], 0),
         Object.entries(user.investments).reduce((acc, curr) => acc + curr[1], 0)
     ];
 
-    const [expenses, setExpenses] = useState(false);
+    const [result, setResult] = useState(false);
 
     useEffect(() =>{
         let totalSpent = arrSummary.reduce((acc, curr) => acc + curr, 0);
         const averagePersonCust = 300;
 
-        console.log(user, totalSpent, 10/0);
-        if( ((user.profile.responsible_for_someone * averagePersonCust < averagePersonCust * 3 ? 
-            user.profile.responsible_for_someone * averagePersonCust : 
-            user.profile.children * averagePersonCust ) / 
-            user.profile.family_responsibility)
-            + totalSpent <= user.income
-        ){
+        if(totalSpent < user.income){
+            if(user.profile.responsible_for_someone * averagePersonCust + user.profile.children * averagePersonCust 
+               + totalSpent < user.income){
+                if(user.income === 3000){
 
-        }else{
-            if(totalSpent > user.income){
-                setExpenses(<p>
-                    Infelizmente suas despesas estão 
-                </p>);
+                }else if(user.income === 6000){
+
+                }else{
+
+                };
             }else{
+                setResult(<p>
+                    Sua situação atual é <strong>financeiramente estável</strong>, porém há um risco de você se endividar, você pode:
 
+                    <ul>
+                        <li>Reorganizar suas finanças.</li>
+                        <li>Buscar fontes de <strong>renda extra</strong>.</li>
+                        <li>Investir.</li>
+                    </ul>
+
+                    Isso te ajudará a ter um espaço em suas finanças para <strong>emergências</strong> e, além de criar uma <strong>maior estabilidade</strong>, também pode te ajudar a realizar algum de seus sonhos.<br/>
+                    <strong>Aprender sobre investimentos</strong> e sobre finanças neste momento é essencial para alcançar melhores resultados.
+                </p>);
+            };
+        }else{
+            if(user.profile.responsible_for_someone > 0 || 
+               user.profile.children > 0){
+                
+                setResult(<p>
+                    Sua situação financeira atual é de <strong>endividado com pessoas que depende de você</strong>, aconselhamos que você:
+
+                    <ul>
+                        <li>Faça uma lista de suas <strong>dívidas pendentes</strong>.</li>
+                        <li>Registre seus ganhos e gastos e <strong>planeje seu orçamento</strong>.</li>
+                        <li><strong>Economize</strong> o quanto puder.</li>
+                        <li><strong>Renegocie</strong> suas dívidas.</li>
+                        <li>Busque outras <strong>fontes de renda</strong>.</li>
+                    </ul>
+
+                    Conscientize as pessoas que dependem de você da sua situação financeira para que eles também ajudem a controlar os gastos.<br/>
+                    Assim que sua situação financeira se estabilizar, aconselhamos que aprenda sobre investimentos e comece a <strong>investir seu dinheiro</strong> para evitar novos problemas financeiros.
+
+                </p>);
+
+            } else {
+                setResult(<p>
+                    Sua situação financeira atual é de <strong>endividado </strong>, aconselhamos que você:
+
+                    <ul>
+                        <li>Faça uma lista de suas <strong>dívidas pendentes</strong>.</li>
+                        <li>Registre seus ganhos e gastos e <strong>planeje seu orçamento</strong>.</li>
+                        <li><strong>Economize</strong> o quanto puder.</li>
+                        <li><strong>Renegocie</strong> suas dívidas.</li>
+                        <li>Busque outras <strong>fontes de renda</strong>.</li>
+                    </ul>
+
+                    Assim que sua situação financeira se estabilizar, aconselhamos que aprenda sobre investimentos e comece a <strong>investir seu dinheiro</strong> para evitar novos problemas financeiros.
+
+                </p>);
             };
         };
     });
@@ -144,12 +188,12 @@ function Result(){
                         <Graphic
                             theme="black"
                             arrGraphic={[
-                                [calculatePercentage(arrSummary[0], user.fixed_expenses.energy), "Energia"],
-                                [calculatePercentage(arrSummary[0], user.fixed_expenses.water), "Água"],
-                                [calculatePercentage(arrSummary[0], user.fixed_expenses.rent), "Aluguel"],
-                                [calculatePercentage(arrSummary[0], user.fixed_expenses.internet), "Internet"],
-                                [calculatePercentage(arrSummary[0], user.fixed_expenses.food), "Alimentação"],
-                                [calculatePercentage(arrSummary[0], user.fixed_expenses.other), "Outros"],
+                                [calculatePercentage(arrSummary[0], user.fixed_result.energy), "Energia"],
+                                [calculatePercentage(arrSummary[0], user.fixed_result.water), "Água"],
+                                [calculatePercentage(arrSummary[0], user.fixed_result.rent), "Aluguel"],
+                                [calculatePercentage(arrSummary[0], user.fixed_result.internet), "Internet"],
+                                [calculatePercentage(arrSummary[0], user.fixed_result.food), "Alimentação"],
+                                [calculatePercentage(arrSummary[0], user.fixed_result.other), "Outros"],
                             ]}
                         />
                     </div>
@@ -159,32 +203,32 @@ function Result(){
                     <div className={styles.legend_graphic}>
                         <Legend
                             theme="dark" 
-                            text={`Energia: R$${user.fixed_expenses.energy}`} 
+                            text={`Energia: R$${user.fixed_result.energy}`} 
                             description="Valor da conta mensal de energia." 
                         />
                         <Legend
                             theme="dark" 
-                            text={`Água: R$${user.fixed_expenses.water}`} 
+                            text={`Água: R$${user.fixed_result.water}`} 
                             description="Valor da conta mensal de água." 
                         />
                         <Legend
                             theme="dark" 
-                            text={`Aluguel: R$${user.fixed_expenses.rent}`} 
+                            text={`Aluguel: R$${user.fixed_result.rent}`} 
                             description="Valor do aluguel pago por mês." 
                         />
                         <Legend
                             theme="dark" 
-                            text={`Internet: R$${user.fixed_expenses.internet}`} 
+                            text={`Internet: R$${user.fixed_result.internet}`} 
                             description="Valor da conta mensal de Internet." 
                         />
                         <Legend
                             theme="dark" 
-                            text={`Alimentação: R$${user.fixed_expenses.food}`} 
+                            text={`Alimentação: R$${user.fixed_result.food}`} 
                             description="Valor gasto por mês com alimentação." 
                         />
                         <Legend
                             theme="dark" 
-                            text={`Outros: R$${user.fixed_expenses.other}`} 
+                            text={`Outros: R$${user.fixed_result.other}`} 
                             description="Outras despesas fixas como gás, aluguel do carro, plano de saúde, etc." 
                         />
                     </div>
@@ -196,10 +240,10 @@ function Result(){
                         <Graphic
                             theme="black"
                             arrGraphic={[
-                                [calculatePercentage(arrSummary[1], user.variable_expenses.entertainment), "Entrete."],
-                                [calculatePercentage(arrSummary[1], user.variable_expenses.leisure), "Lazer"],
-                                [calculatePercentage(arrSummary[1], user.variable_expenses.trips), "Viagens"],
-                                [calculatePercentage(arrSummary[1], user.variable_expenses.other), "Outros"]
+                                [calculatePercentage(arrSummary[1], user.variable_result.entertainment), "Entrete."],
+                                [calculatePercentage(arrSummary[1], user.variable_result.leisure), "Lazer"],
+                                [calculatePercentage(arrSummary[1], user.variable_result.trips), "Viagens"],
+                                [calculatePercentage(arrSummary[1], user.variable_result.other), "Outros"]
                             ]}
                         />
                     </div>
@@ -209,22 +253,22 @@ function Result(){
                     <div className={styles.legend_graphic}>
                         <Legend
                             theme="dark" 
-                            text={`Entretenimento: R$${user.variable_expenses.entertainment}`} 
+                            text={`Entretenimento: R$${user.variable_result.entertainment}`} 
                             description="Dinheiro gasto com entretenimento como cinema, teatro, etc." 
                         />
                         <Legend
                             theme="dark" 
-                            text={`Lazer: R$${user.variable_expenses.leisure}`} 
+                            text={`Lazer: R$${user.variable_result.leisure}`} 
                             description="Dinheiro gasto com lazer como spa, prática de esporte, etc." 
                         />
                         <Legend
                             theme="dark" 
-                            text={`Viagens: R$${user.variable_expenses.trips}`} 
+                            text={`Viagens: R$${user.variable_result.trips}`} 
                             description="Dinheiro gasto com Viagens como praia, viagens internacionais, etc." 
                         />
                         <Legend
                             theme="dark" 
-                            text={`Outros: R$${user.variable_expenses.other}`} 
+                            text={`Outros: R$${user.variable_result.other}`} 
                             description="Dinheiro gasto com outros tipos de despesas variáveis como comprar roupas, conserto do carro, etc." 
                         />
                     </div>
@@ -320,18 +364,7 @@ function Result(){
 
             <section className={styles.result_text}>
                 <h2>O que percebemos?</h2>
-
-                <h3>Despesas</h3>
-                {expenses}
-                
-                <h3>Investimento</h3>
-                <p></p>
-
-                <h3>Padrão de vida</h3>
-                <p></p>
-
-                <h3>Perfil</h3>
-                <p></p>
+                {result}
             </section>
         </main>
     );

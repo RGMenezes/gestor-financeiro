@@ -3,6 +3,12 @@
     padding: 120px 10px 60px 10px;
 
     background-color: var(--color-1);
+
+    transition: all .3s ease;
+}
+
+.result_opacity{
+    opacity: 0;
 }
 
 .result_title{
@@ -83,6 +89,7 @@
 .result_text{
     max-width: 600px;
     margin: auto;
+    padding-bottom: 100px;
 }
 
 .result_text h2{

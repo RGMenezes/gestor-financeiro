@@ -1,4 +1,5 @@
 import { useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 import Header from "../layout/Header";
 
@@ -10,6 +11,8 @@ function Result(){
 
     const location = useLocation();
     const resultFormUser = location.state.user;
+
+    const [opacity, setOpacity] = useState("result_opacity");
     
     const user = {
         income: parseFloat(resultFormUser.wage) + parseFloat(resultFormUser.extra_income),
@@ -57,10 +60,37 @@ function Result(){
         Object.entries(user.investments).reduce((acc, curr) => acc + curr[1], 0)
     ];
 
+    const [expenses, setExpenses] = useState(false);
+
+    useEffect(() =>{
+        let totalSpent = arrSummary.reduce((acc, curr) => acc + curr, 0);
+        const averagePersonCust = 300;
+
+        console.log(user, totalSpent, 10/0);
+        if( ((user.profile.responsible_for_someone * averagePersonCust < averagePersonCust * 3 ? 
+            user.profile.responsible_for_someone * averagePersonCust : 
+            user.profile.children * averagePersonCust ) / 
+            user.profile.family_responsibility)
+            + totalSpent <= user.income
+        ){
+
+        }else{
+            if(totalSpent > user.income){
+                setExpenses(<p>
+                    Infelizmente suas despesas estão 
+                </p>);
+            }else{
+
+            };
+        };
+    });
+
     const calculatePercentage = (total, percentage) => Math.floor(percentage * 100 / total) ;
+
+    setTimeout(() => setOpacity("", 50));
     
     return(
-        <main className={styles.body_result} >
+        <main className={`${styles.body_result} ${styles[opacity]}`} >
             <Header />
             <div className={styles.result_title}>
                 <h1>Resultado</h1>
@@ -292,15 +322,15 @@ function Result(){
                 <h2>O que percebemos?</h2>
 
                 <h3>Despesas</h3>
-                <p>Testando <strong>paragráfo</strong> para definir o seu estilo</p>
+                {expenses}
                 
-                <h3>Investimentoa</h3>
+                <h3>Investimento</h3>
                 <p></p>
 
                 <h3>Padrão de vida</h3>
                 <p></p>
 
-                <h3>Escolhas</h3>
+                <h3>Perfil</h3>
                 <p></p>
             </section>
         </main>

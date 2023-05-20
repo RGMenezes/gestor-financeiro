@@ -61,6 +61,7 @@ function Result(){
     ];
 
     const [result, setResult] = useState(false);
+    const [investment, setInvestiment] = useState(false);
 
     useEffect(() =>{
         let totalSpent = arrSummary.reduce((acc, curr) => acc + curr, 0);
@@ -69,12 +70,88 @@ function Result(){
         if(totalSpent < user.income){
             if(user.profile.responsible_for_someone * averagePersonCust + user.profile.children * averagePersonCust 
                + totalSpent < user.income){
-                if(user.income === 3000){
+                const idealFixedExpenses = calculatePercentage(user.income, arrSummary[0]);
+                const remainingTotal = arrSummary[1] + arrSummary[2] + arrSummary[3];
+                if(parseFloat(idealFixedExpenses.split("")[0]) * 10 === idealFixedExpenses){
+                    if(calculatePercentage(remainingTotal, arrSummary[1]) >= 25){
+                        setResult(<p>Identificamos que você <strong>gerencia muito bem suas finanças</strong>, porém sempre se mantenha atualizado e atento em como seu dinheiro é gasto.</p>);
 
-                }else if(user.income === 6000){
+                        switch(user.profile.investment_knowledge){
+                            case 0: setInvestiment(<p>Tente aprender sobre <strong>finanças e investimentos</strong>, comece criando uma <strong>reserva de emergência</strong> para possíveis problemas futuros.
+                                </p>);
+                                break
+                            case 1: setInvestiment(<p>Aprender mais sobre <strong>investimentos</strong> pode ser ideal para você nesse momento, experimente comprar algum <strong>livro ou pesquisar sobre</strong>.
+                                </p>);
+                                break
+                            case 2: setInvestiment(<p>Coloque em <strong>prática seus conhecimentos</strong> sobre investimentos, acompanhar o mercado pode te deixar mais seguro quando for investir.</p>);
+                                break
+                            case 3: setInvestiment(<p>Você tem um sólido conhecimento sobre investimentos, continue e rapidamente você <strong>alcançará seus objetivos</strong>.</p>);
+                                break
+                            default:
+                                console.error("answer not found");
+                                break
+                        };
+                    }else{
+                        setResult(<p>Identificamos que você <strong>gerencia muito bem suas finanças</strong>, porém sempre se mantenha atualizado e atento em como seu dinheiro é gasto.<br/>
+                        Procure <strong>diminuir seus gastos</strong> e <strong>invista</strong> o capital excedente, isso te trará melhor estabilidade no futuro.
+                        </p>);
 
+                        switch(user.profile.investment_knowledge){
+                            case 0: setInvestiment(<p>Tente aprender sobre <strong>finanças e investimentos</strong>, comece criando uma <strong>reserva de emergência</strong> para possíveis problemas futuros.
+                                </p>);
+                                break
+                            case 1: setInvestiment(<p>Aprender mais sobre <strong>investimentos</strong> pode ser ideal para você nesse momento, experimente comprar algum <strong>livro ou pesquisar sobre</strong>.
+                                </p>);
+                                break
+                            case 2: setInvestiment(<p>Coloque em <strong>prática seus conhecimentos</strong> sobre investimentos, acompanhar o mercado pode te deixar mais seguro quando for investir.</p>);
+                                break
+                            case 3: setInvestiment(<p>Você tem um sólido conhecimento sobre investimentos, continue e rapidamente você <strong>alcançará seus objetivos.</strong></p>);
+                                break
+                            default:
+                                console.error("answer not found");
+                                break
+                        };
+                    };
                 }else{
+                    if(calculatePercentage(remainingTotal, arrSummary[1]) >= 25){
+                        setResult(<p>Identificamos que você <strong>gerencia bem suas finanças</strong>, porém tente <strong>reduzir o seus gastos</strong> para aumentar o valor investido e consequentemente render mais futuramente.</p>);
 
+                        switch(user.profile.investment_knowledge){
+                            case 0: setInvestiment(<p>Tente aprender sobre <strong>finanças e investimentos</strong>, comece criando uma <strong>reserva de emergência</strong> para possíveis problemas futuros.
+                                </p>);
+                                break
+                            case 1: setInvestiment(<p>Aprender mais sobre <strong>investimentos</strong> pode ser ideal para você nesse momento, experimente comprar algum <strong>livro ou pesquisar sobre</strong>.
+                                </p>);
+                                break
+                            case 2: setInvestiment(<p>Coloque em <strong>prática seus conhecimentos</strong> sobre investimentos, acompanhar o mercado pode te deixar mais seguro quando for investir.</p>);
+                                break
+                            case 3: setInvestiment(<p>Você tem um sólido conhecimento sobre investimentos, continue e rapidamente você <strong>alcançará seus objetivos</strong>.</p>);
+                                break
+                            default:
+                                console.error("answer not found");
+                                break
+                        };
+                    }else{
+                        setResult(<p>Identificamos que você <strong>gerencia bem suas finanças</strong>, porém tente <strong>reduzir o seus gastos</strong> para aumentar o valor investido e consequentemente render mais futuramente.<br/>
+                        Procure <strong>diminuir seus gastos</strong> e <strong>invista</strong> o capital excedente, isso te trará melhor estabilidade no futuro.
+                        </p>);
+
+                        switch(user.profile.investment_knowledge){
+                            case 0: setInvestiment(<p>Tente aprender sobre <strong>finanças e investimentos</strong>, comece criando uma <strong>reserva de emergência</strong> para possíveis problemas futuros.
+                                </p>);
+                                break
+                            case 1: setInvestiment(<p>Aprender mais sobre <strong>investimentos</strong> pode ser ideal para você nesse momento, experimente comprar algum <strong>livro ou pesquisar sobre</strong>.
+                                </p>);
+                                break
+                            case 2: setInvestiment(<p>Coloque em <strong>prática seus conhecimentos</strong> sobre investimentos, acompanhar o mercado pode te deixar mais seguro quando for investir.</p>);
+                                break
+                            case 3: setInvestiment(<p>Você tem um sólido conhecimento sobre investimentos, continue e rapidamente você <strong>alcançará seus objetivos.</strong></p>);
+                                break
+                            default:
+                                console.error("answer not found");
+                                break
+                        };
+                    };
                 };
             }else{
                 setResult(<p>
@@ -364,7 +441,7 @@ function Result(){
 
             <section className={styles.result_text}>
                 <h2>O que percebemos?</h2>
-                {result}
+                {result}{investment}
             </section>
         </main>
     );

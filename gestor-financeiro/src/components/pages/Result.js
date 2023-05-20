@@ -70,7 +70,7 @@ function Result(){
         if(totalSpent < user.income){
             if(user.profile.responsible_for_someone * averagePersonCust + user.profile.children * averagePersonCust 
                + totalSpent < user.income){
-                const idealFixedExpenses = calculatePercentage(user.income, arrSummary[0]);
+                const idealFixedExpenses = toString(calculatePercentage(user.income, arrSummary[0]));
                 const remainingTotal = arrSummary[1] + arrSummary[2] + arrSummary[3];
                 if(parseFloat(idealFixedExpenses.split("")[0]) * 10 === idealFixedExpenses){
                     if(calculatePercentage(remainingTotal, arrSummary[1]) >= 25){
@@ -171,8 +171,9 @@ function Result(){
             if(user.profile.responsible_for_someone > 0 || 
                user.profile.children > 0){
                 
-                setResult(<p>
-                    Sua situação financeira atual é de <strong>endividado com pessoas que depende de você</strong>, aconselhamos que você:
+                setResult(
+                <>
+                    <p>Sua situação financeira atual é de <strong>endividado com pessoas que depende de você</strong>, aconselhamos que você:</p>
 
                     <ul>
                         <li>Faça uma lista de suas <strong>dívidas pendentes</strong>.</li>
@@ -182,14 +183,16 @@ function Result(){
                         <li>Busque outras <strong>fontes de renda</strong>.</li>
                     </ul>
 
-                    Conscientize as pessoas que dependem de você da sua situação financeira para que eles também ajudem a controlar os gastos.<br/>
-                    Assim que sua situação financeira se estabilizar, aconselhamos que aprenda sobre investimentos e comece a <strong>investir seu dinheiro</strong> para evitar novos problemas financeiros.
-
-                </p>);
+                    <p>
+                        Conscientize as pessoas que dependem de você da sua situação financeira para que eles também ajudem a controlar os gastos.<br/>
+                        Assim que sua situação financeira se estabilizar, aconselhamos que aprenda sobre investimentos e comece a <strong>investir seu dinheiro</strong> para evitar novos problemas financeiros.
+                    </p>
+                </>);
 
             } else {
-                setResult(<p>
-                    Sua situação financeira atual é de <strong>endividado </strong>, aconselhamos que você:
+                setResult(
+                <>
+                    <p> Sua situação financeira atual é de <strong>endividado </strong>, aconselhamos que você:</p>
 
                     <ul>
                         <li>Faça uma lista de suas <strong>dívidas pendentes</strong>.</li>
@@ -199,12 +202,13 @@ function Result(){
                         <li>Busque outras <strong>fontes de renda</strong>.</li>
                     </ul>
 
-                    Assim que sua situação financeira se estabilizar, aconselhamos que aprenda sobre investimentos e comece a <strong>investir seu dinheiro</strong> para evitar novos problemas financeiros.
-
-                </p>);
+                    <p>
+                        Assim que sua situação financeira se estabilizar, aconselhamos que aprenda sobre investimentos e comece a <strong>investir seu dinheiro</strong> para evitar novos problemas financeiros.
+                    </p>
+                </>);
             };
         };
-    });
+    }, []);
 
     const calculatePercentage = (total, percentage) => Math.floor(percentage * 100 / total) ;
 
@@ -215,7 +219,7 @@ function Result(){
             <Header />
             <div className={styles.result_title}>
                 <h1>Resultado</h1>
-                <p>{user.profile.name}, confira sua análise financeira personalizada e descubra seus resultados.</p>
+                <p><strong>{user.profile.name}</strong>, confira sua análise financeira personalizada e descubra seus resultados.</p>
             </div>
             <section className={styles.container_graphic}>
 

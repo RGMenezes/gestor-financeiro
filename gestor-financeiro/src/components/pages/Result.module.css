@@ -35,7 +35,7 @@
     padding: 100px 0px;
     display: flex;
     flex-flow: row wrap;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     gap: 50px;
 }
@@ -110,7 +110,7 @@
     list-style: disc inside;
 }
 
-.result_text p strong{
+p strong{
     font-weight: 600;
     text-decoration: underline solid var(--color-2) 2px;
 }

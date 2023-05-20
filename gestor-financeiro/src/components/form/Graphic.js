@@ -19,7 +19,7 @@ function Graphic({theme, arrGraphic}){
                     const barWidth = (900 / arrGraphicLength) * 0.8;
                     const barX = (900 / arrGraphicLength) * contBar + ( 100 + (900 / arrGraphicLength) / 2);
 
-                    arrBar.push(<line key={contBar + 1} x1={barX} x2={barX} y1={barHeight} y2='700' strokeWidth={barWidth} />);
+                    arrBar.push(<line key={contBar + 1} x1={barX} x2={barX} y1={barHeight ? barHeight : 700} y2='700' strokeWidth={barWidth} />);
                     arrTextBar.push(<text key={contBar + 1 * 100} x='220' y={1515 - barX} >{arrGraphic[contBar][1]}</text>);
 
                     setShowBar(arrBar);

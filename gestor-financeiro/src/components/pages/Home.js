@@ -21,8 +21,8 @@ function Home(){
 
             <Link to="/questions">
                 <Button
-                    text="Analizar Finanças" 
-                    styleMode="dark" 
+                    text="Analisar Finanças"
+                    styleMode="dark"
                 />
             </Link>
         </section>
